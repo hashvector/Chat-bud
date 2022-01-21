@@ -10,5 +10,11 @@ class Room(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
 class Topic(models.Model):
     topic = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.topic

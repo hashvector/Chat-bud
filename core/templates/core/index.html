@@ -1,1 +1,19 @@
-<h1>Hello world</h1>
+{% extends 'main.html' %} {% block content %}
+<h2>Home Template</h2>
+
+<p>Create Room</p>
+
+{% for room in rooms %}
+<div>
+    <p>@User</p>
+
+    <h3>{{room.name}}</h3>
+
+    <span>Topic</span>
+    <span>Edit</span>
+    <span>Delete</span>
+</div>
+{% endfor %}
+
+<hr />
+{% endblock content %}
