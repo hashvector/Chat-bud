@@ -2,18 +2,18 @@
 <h2>Home Template</h2>
 
 <p>Create Room</p>
-
+<hr>
 {% for room in rooms %}
 <div>
-    <p>@User</p>
+    <p>Hosted by -> @User</p>
 
-    <h3>{{room.name}}</h3>
+    <h3><a href="{% url 'room' room.id %}">{{room.name}}</a></h3>
 
-    <span>Topic</span>
+    <small>{{room.topic}}</small>
     <span>Edit</span>
     <span>Delete</span>
 </div>
+<hr />
 {% endfor %}
 
-<hr />
 {% endblock content %}
