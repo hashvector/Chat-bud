@@ -41,6 +41,6 @@ def editRoom(request, pk):
     return render(request, 'core/room_form.html', context)
 
 
-# def deleteRoom(request, pk):
-#     room = Room.objects.get(id=pk)
-    
+def deleteRoom(request, pk):
+    room = Room.objects.get(id=pk)
+    context = {'obj':room}
