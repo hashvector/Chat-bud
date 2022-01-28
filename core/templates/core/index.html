@@ -1,20 +1,47 @@
-{% extends 'main.html' %} {% block content %}
+{% extends 'main.html' %} 
+{% block content %}
 <h2>Home Template</h2>
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+    }
 
-<p><a href="{% url 'create-room' %}">Create Room</a></p>
-<hr>
-{% for room in rooms %}
-<div>
-    <p>Hosted by -> @User</p>
+    .item {
+        flex: 3;
+    }
+    .item:first-child {
+        flex: 1;
+    }
 
-    
-    <h3><a href="{% url 'room' room.id %}">{{ room.name }}</a></h3>
+</style>
+<div class="container">
 
-    <small>{{room.topic}}</small>
-    <span><a href="{% url 'edit-room' room.id %}">Edit</a></span>
-    <span>Delete</span>
+    <div class="item">
+        <h3>Browse Topics</h3>
+        <hr>
+        >>>>>>>>>>>>>>>
+    </div>
+
+    <div class="item">
+    <a href="{% url 'create-room' %}">Create Room</a>
+    <hr>
+        <div>
+            {% for room in rooms %}
+            <p>Hosted by -> @{{room.host}}</p>
+            <h3>
+                <a href="{% url 'room' room.id %}">
+                    {{ room.name }}
+                </a>
+            </h3>
+            
+            <small>{{room.topic}}</small>
+            <span><a href="{% url 'edit-room' room.id %}">Edit</a></span>
+            <span><a href="{% url 'delete-room' room.id %}">Delete</a></span>
+            {% endfor %}
+        </div>
+    <hr />
+    </div>
 </div>
-<hr />
-{% endfor %}
 
 {% endblock content %}

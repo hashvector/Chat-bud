@@ -1,11 +1,12 @@
+from pydoc_data.topics import topics
 from django.shortcuts import redirect, render
-from django.template import context
-from .models import Room
+from .models import Room, Topic
 from .form import RoomForm
 
 def index(request):
     rooms = Room.objects.all()
-    context = {'rooms':rooms}
+    topics = Topic.objects.all()
+    context = {'rooms':rooms, 'topics':topics}
     return render(request, 'core/index.html', context)
 
 def room(request, pk):
@@ -41,6 +42,11 @@ def editRoom(request, pk):
     return render(request, 'core/room_form.html', context)
 
 
-# def deleteRoom(request, pk):
-#     room = Room.objects.get(id=pk)
-    
+def deleteRoom(request, pk):
+    room = Room.objects.get(id=pk)
+    context = {'object': room}
+    if request.method == 'POST':
+        room.delete()
+        return redirect('index')
+
+    return render(request, 'core/delete.html', context)
