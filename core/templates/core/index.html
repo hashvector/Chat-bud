@@ -20,7 +20,15 @@
     <div class="item">
         <h3>Browse Topics</h3>
         <hr>
-        >>>>>>>>>>>>>>>
+        <div>
+            <a href="{% url 'index' %}">All</a>
+        </div> 
+        
+         {% for topic in topics %}
+            <div>
+                <a href="{% url 'index' %}?q={{ topic.name }}">{{ topic.name }}</a>
+            </div>            
+        {% endfor %}  
     </div>
 
     <div class="item">
@@ -35,7 +43,7 @@
                 </a>
             </h3>
             
-            <small>{{room.topic}}</small>
+            <small>{{room.topic.name}}</small>
             <span><a href="{% url 'edit-room' room.id %}">Edit</a></span>
             <span><a href="{% url 'delete-room' room.id %}">Delete</a></span>
             {% endfor %}
