@@ -8,7 +8,6 @@ from .form import RoomForm
 
 
 def loginUser(request):
-
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -27,6 +26,10 @@ def loginUser(request):
             pass
         
     return render(request, 'core/login_register.html')
+
+def logoutUser(request):
+    logout(request)
+    return redirect('index')
 
 def index(request):
     q = request.GET.get('q') if request.GET.get('q') != None else  ''
