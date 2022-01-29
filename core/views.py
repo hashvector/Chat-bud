@@ -1,15 +1,46 @@
-from pydoc_data.topics import topics
+from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
 from .models import Room, Topic
 from .form import RoomForm
 
+
+def loginUser(request):
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            user = User.objects.get(username)
+        except:
+            pass
+        
+        user = authenticate(request, username=username, password=password)
+
+        if user != None:
+            login(request, user)
+            return redirect('index')
+        else:
+            pass
+        
+    return render(request, 'core/login_register.html')
+
 def index(request):
     q = request.GET.get('q') if request.GET.get('q') != None else  ''
-    rooms = Room.objects.filter(topic__name__icontains=q)
+    rooms = Room.objects.filter(
+        Q(topic__name__icontains=q) |
+        Q(name__icontains=q) |
+        Q(description__icontains=q)
+    )
+    room_count = f"{rooms.count()} rooms available" if rooms.count() > 1 else f'{rooms.count()} room available'
     topics = Topic.objects.all()
     context = {
         'rooms':rooms,
-        'topics':topics
+        'topics':topics,
+        'room_count':room_count,
         }
     return render(request, 'core/index.html', context)
 
