@@ -8,7 +8,7 @@
     }
 
     .item {
-        flex: 3;
+        flex: 5;
     }
     .item:first-child {
         flex: 1;
@@ -37,7 +37,7 @@
     <div class="item">
         <h4>{{room_count}}</h4>
     <a href="{% url 'create-room' %}">Create Room</a>
-
+        <hr>
         <div>
             {% for room in rooms %}
             <p>Hosted by -> @{{room.host}}</p>
@@ -50,6 +50,7 @@
             <small>{{room.topic.name}}</small>
             <span><a href="{% url 'edit-room' room.id %}">Edit</a></span>
             <span><a href="{% url 'delete-room' room.id %}">Delete</a></span>
+            <hr>
             {% endfor %}
         </div>
     <hr />
