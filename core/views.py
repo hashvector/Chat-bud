@@ -1,16 +1,18 @@
+from pydoc import pager
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Q
 from .models import Room, Topic
 from .form import RoomForm
 
 
 def loginUser(request):
-    
+    page = 'login'
     if request.user.is_authenticated:
         return redirect('index')
 
@@ -31,12 +33,22 @@ def loginUser(request):
         else:
             messages.error(request, "User name or password does not exist")
 
-    context = {}
+    context = {'page':page}
     return render(request, 'core/login_register.html', context)
 
 def logoutUser(request):
     logout(request)
     return redirect('index')
+
+def registerUser(request):
+    form = UserCreationForm()
+    context = {'form':form}
+
+    if request.mehod == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+    return render(request, 'core/login_register.html', context)
 
 def index(request):
     q = request.GET.get('q') if request.GET.get('q') != None else  ''
