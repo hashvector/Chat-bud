@@ -48,8 +48,12 @@
             </h3>
             
             <small>{{room.topic.name}}</small>
-            <span><a href="{% url 'edit-room' room.id %}">Edit</a></span>
-            <span><a href="{% url 'delete-room' room.id %}">Delete</a></span>
+            
+            {% if request.user == room.host %}
+                <span><a href="{% url 'edit-room' room.id %}">Edit</a></span>
+                <span><a href="{% url 'delete-room' room.id %}">Delete</a></span>
+            {% endif %}
+                
             <hr>
             {% endfor %}
         </div>
