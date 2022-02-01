@@ -44,10 +44,18 @@ def registerUser(request):
     form = UserCreationForm()
     context = {'form':form}
 
-    if request.mehod == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            login(request, user)
+            return redirect('index')
         
+        else:
+            messages.error(request, 'An Error occured during the registration')
+
     return render(request, 'core/login_register.html', context)
 
 def index(request):
