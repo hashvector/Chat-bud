@@ -76,7 +76,8 @@ def index(request):
 
 def room(request, pk):
     room = Room.objects.get(id=pk)
-    context = {'room':room}
+    room_messages = room.message_set.all()
+    context = {'room': room, 'room_messages': room_messages}
     return render(request, 'core/room.html', context)
 
 @login_required(login_url='login')
