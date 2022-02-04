@@ -26,4 +26,5 @@ class Message(models.Model):
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     body = models.TextField()
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
-    created_at = models.DateField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
