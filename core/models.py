@@ -28,3 +28,6 @@ class Message(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.body        

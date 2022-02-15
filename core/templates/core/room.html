@@ -2,6 +2,18 @@
 
 
 {% block content %}
+    <div>
     {{ room.name }}
+    {{room.discription}}
+
+    <p>Conversation</p>
+    <hr>
+    <div>
+        {% for room_message in room_messages %}
+        
+        {{room.message}}
+        {% endfor %}
+    </div>
+    </div>    
 {% endblock content %}
     
