@@ -1,31 +1,45 @@
-{% extends 'main.html' %}
-
-
+{% extends 'main.html' %} 
 {% block content %}
-    <div>
+<style>
+    .container {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+</style>
+
+<div class="container">
+  <div>
     <h1>{{room.name}}</h1>
     <p>{{room.description}}</p>
     <h2>Conversation</h2>
-    <hr>
+    <hr />
     <div>
-        {% for room_message in room_messages %}
-        
-        {% if request.user == room_message.host %}         
-        <a href="{% url 'delete-message' room_message.id%}">Delete</a>
-        {% endif %}
+      {% for room_message in room_messages %} 
+      {% if request.user == room_message.host %}
+      <a href="{% url 'delete-message' room_message.id%}">Delete</a>
+      {% endif %}
 
-         <small>@{{room_message.host}} {{room_message.created|timesince}} ago</small>
-            <h4>{{room_message}}</h4>
-            <hr>
-        {% endfor %}
-
-        
-        {% if request.user.is_authenticated %}
-            <form action="" method="post">
-                {% csrf_token %}
-                <input type="text" placeholder="Enter new message..." name="body">
-            </form>            
-        {% endif %}
+      <smal>@{{room_message.host}} {{room_message.created|timesince}} ago</small>
+      <h4>{{room_message}}</h4>
+      <hr />
+      {% endfor %} 
+      
+      {% if request.user.is_authenticated %}
+      <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Enter new message..." name="body" />
+      </form>
+      {% endif %}
     </div>
-    </div>    
-{% endblock content %}
+    </div>
+    <div>
+        <p>participants</p>
+        
+        {% for participant in participants %}
+            <h5>{{participant}}</h5>
+        {% endfor %}
+            
+    </div>
+  </div>
+  {% endblock content %}
+</div>
