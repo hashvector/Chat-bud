@@ -129,3 +129,15 @@ def deleteRoom(request, pk):
         return redirect('index')
 
     return render(request, 'core/delete.html', context)
+
+
+@login_required(login_url='login')
+def deleteMessage(request, pk):
+    message = Message.objects.get(id=pk)
+   
+    if request.method == 'POST':
+        message.delete()
+        return redirect('index')
+
+    context = {'object': message}
+    return render(request, 'core/delete.html', context)
