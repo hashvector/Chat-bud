@@ -84,6 +84,7 @@ def room(request, pk):
             body = request.POST.get('body'),
             room = room,
         )
+        room.participants.add(request.user)
         return redirect('room', room.id)    
     context = {'room': room, 'room_messages': room_messages, 'participants':participants}
     return render(request, 'core/room.html', context)
