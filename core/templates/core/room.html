@@ -3,10 +3,9 @@
 
 {% block content %}
     <div>
-    {{ room.name }}
-    {{room.discription}}
-
-    <p>Conversation</p>
+    <h1>{{room.name}}</h1>
+    <p>{{room.description}}</p>
+    <h2>Conversation</h2>
     <hr>
     <div>
         {% for room_message in room_messages %}
@@ -17,6 +16,7 @@
 
          <small>@{{room_message.host}} {{room_message.created|timesince}} ago</small>
             <h4>{{room_message}}</h4>
+            <hr>
         {% endfor %}
 
         
