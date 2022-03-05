@@ -1,4 +1,3 @@
-from pydoc import pager
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -7,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Q
-from .models import Room, Topic
+from .models import Message, Room, Topic
 from .form import RoomForm
 
 
@@ -77,8 +76,18 @@ def index(request):
 def room(request, pk):
     room = Room.objects.get(id=pk)
     room_messages = room.message_set.all()
+
+    if request.method == 'POST':
+        Message.objects.create(
+            host = request.user,
+            body = request.POST.get('body'),
+            room = room,
+        )
+        return redirect('room', room.id)    
     context = {'room': room, 'room_messages': room_messages}
     return render(request, 'core/room.html', context)
+
+
 
 @login_required(login_url='login')
 def createRoom(request):

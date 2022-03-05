@@ -10,10 +10,17 @@
     <hr>
     <div>
         {% for room_message in room_messages %}
-        
-        {{room.message}}
+         <small>@{{room_message.host}} {{room_message.created|timesince}} ago</small>
+            <h4>{{room_message}}</h4>
         {% endfor %}
+
+        
+        {% if request.user.is_authenticated %}
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" placeholder="Enter new message..." name="body">
+            </form>            
+        {% endif %}
     </div>
     </div>    
 {% endblock content %}
-    

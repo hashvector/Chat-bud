@@ -1,6 +1,5 @@
 {% extends 'main.html' %} 
 {% block content %}
-<h2>Home Template</h2>
 <style>
     .container {
         display: flex;
@@ -41,11 +40,11 @@
         <div>
             {% for room in rooms %}
             <p>Hosted by -> @{{room.host}}</p>
-            <h3>
+            <h5>
                 <a href="{% url 'room' room.id %}">
                     {{ room.name }}
                 </a>
-            </h3>
+            </h5>
             
             <small>{{room.topic.name}}</small>
             
