@@ -3,9 +3,8 @@
 <style>
     .container {
         display: grid;
-        grid-template-columns: 1fr 4fr;
+        grid-template-columns: 1fr 3fr 1fr;
     }
-
 </style>
 <div class="container">
 
@@ -18,8 +17,8 @@
         <div>
             <a href="{% url 'index' %}">All</a>
         </div> 
-        
-         {% for topic in topics %}
+
+        {% for topic in topics %}
             <div>
                 <a href="{% url 'index' %}?q={{ topic.name }}">{{ topic.name }}</a>
             </div>            
@@ -50,6 +49,12 @@
             {% endfor %}
         </div>
     <hr />
+    </div>
+
+    <div>
+        <h3>Recent Activities</h3>
+
+
     </div>
 </div>
 
