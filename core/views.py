@@ -66,10 +66,13 @@ def index(request):
     )
     room_count = f"{rooms.count()} rooms available" if rooms.count() > 1 else f'{rooms.count()} room available'
     topics = Topic.objects.all()
+    room_messages = Message.objects.all()
+
     context = {
         'rooms':rooms,
         'topics':topics,
         'room_count':room_count,
+        'room_messages': room_messages,
         }
     return render(request, 'core/index.html', context)
 
