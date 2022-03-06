@@ -5,6 +5,7 @@
     {% csrf_token %}
     <p>Are you sure you want to delete '{{object}}' ?</p>
     <a href="{{ request.META.HTTP_REFERER }}">Back</a>
+    <input type="hidden" name="previous_page" value="{{ request.META.HTTP_REFERER }}">
     <input type="submit" value="YES" />
 </form>
 {% endblock content %}

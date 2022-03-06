@@ -143,8 +143,9 @@ def deleteMessage(request, pk):
     message = Message.objects.get(id=pk)
    
     if request.method == 'POST':
+        previous_page = request.POST.get('previous_page')
         message.delete()
-        return redirect('room', message.room.id)
+        return redirect(previous_page)
 
     context = {'object': message}
     return render(request, 'core/delete.html', context)
