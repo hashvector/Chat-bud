@@ -55,6 +55,10 @@
         <h3>Recent Activities</h3>
         
         {% for message in room_messages %}
+        
+            {% if request.user == message.host %}
+                <a href="{% url 'delete-message' message.id %}">Delete</a>
+             {% endif %}
             <small>@{{message.host.username}} {{message.created|timesince}}</small>
             <br>
             <small>replied to "{{message.room}}"</small>
