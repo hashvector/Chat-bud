@@ -2,7 +2,10 @@
 
 {% block content %}
 <style>
-    
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
 </style>
 
 <div class="container">
@@ -12,8 +15,7 @@
     </div>
 
     <div>
-        <p>{{user.username}}</p>
-        <hr>
+        {% include 'core/feeds_component.html' %}
     </div>
 
     <div>
