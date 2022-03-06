@@ -81,7 +81,10 @@ def index(request):
 def userProfile(request, pk):
     user = User.objects.get(id=pk)
     rooms = user.room_set.all()
-    context = {'user':user, 'rooms': rooms}
+    topics = Topic.objects.all()
+    room_messages = user.message_set.all()
+    context = {'user': user, 'rooms': rooms,
+               'topics': topics, 'room_messages': room_messages}
     return render(request, 'core/user-profile.html', context)
 
 
