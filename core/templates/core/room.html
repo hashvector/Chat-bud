@@ -14,13 +14,13 @@
     <h2>Conversation</h2>
     <hr />
     <div>
-      {% for room_message in room_messages %} 
-      {% if request.user == room_message.host %}
-      <a href="{% url 'delete-message' room_message.id%}">Delete</a>
+      {% for message in room_messages %} 
+      {% if request.user == message.host %}
+      <a href="{% url 'delete-message' message.id%}">Delete</a>
       {% endif %}
 
-      <smal>@{{room_message.host}} {{room_message.created|timesince}} ago</small>
-      <h4>{{room_message}}</h4>
+      <small>@{{message.host}} {{message.created|timesince}} ago</small>
+      <h4>{{message}}</h4>
       <hr />
       {% endfor %} 
       
@@ -36,7 +36,7 @@
         <p>participants</p>
         <hr>
         {% for participant in participants %}
-            <h5>@{{participant}}</h5>
+          <a href="{% url 'user-profile' participant.id %}"><h5>@{{participant}}</h5></a>
         {% endfor %}
             
     </div>

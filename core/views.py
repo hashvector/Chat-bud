@@ -78,6 +78,12 @@ def index(request):
         }
     return render(request, 'core/index.html', context)
 
+def userProfile(request, pk):
+    user = User.objects.get(id=pk)
+    context = {'user':user}
+    return render(request, 'core/user-profile.html', context)
+
+
 def room(request, pk):
     room = Room.objects.get(id=pk)
     room_messages = room.message_set.all()
@@ -93,7 +99,6 @@ def room(request, pk):
         return redirect('room', room.id)    
     context = {'room': room, 'room_messages': room_messages, 'participants':participants}
     return render(request, 'core/room.html', context)
-
 
 
 @login_required(login_url='login')
