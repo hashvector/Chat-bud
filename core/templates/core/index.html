@@ -9,20 +9,7 @@
 <div class="container">
 
     <div class="item">
-        <form action="" method="get">
-            <input type="text" name="q" placeholder="Search Rooms...">
-        </form>
-        <h3>Browse Topics</h3>
-        <hr>
-        <div>
-            <a href="{% url 'index' %}">All</a>
-        </div> 
-
-        {% for topic in topics %}
-            <div>
-                <a href="{% url 'index' %}?q={{ topic.name }}">{{ topic.name }}</a>
-            </div>            
-        {% endfor %}  
+       {% include 'topics_component.html' %}
     </div>
 
     <div class="item">
@@ -52,19 +39,7 @@
     </div>
 
     <div>
-        <h3>Recent Activities</h3>
-        
-        {% for message in room_messages %}
-        
-            {% if request.user == message.host %}
-                <a href="{% url 'delete-message' message.id %}">Delete</a>
-             {% endif %}
-            <small><a href="{% url 'user-profile' message.host.id %}">@{{message.host.username}}</a> {{message.created|timesince}} ago</small>
-            <br>
-            <small>replied to "{{message.room}}"</small>
-            <p>{{message.body}}</p>
-        {% endfor %}
-            
+       {% include 'core/activity_component.html' %}
     </div>
 </div>
 
