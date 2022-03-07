@@ -11,6 +11,6 @@
 >
 <br />
 <small>replied to "{{message.room}}"</small>
-<p>{{message.body}}</p>
+<p><a href="{% url 'room' message.room.id %}">{{message.body}}</a></p>
 <hr/>
 {% endfor %}
