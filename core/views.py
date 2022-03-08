@@ -39,6 +39,7 @@ def logoutUser(request):
     logout(request)
     return redirect('index')
 
+
 def registerUser(request):
     form = UserCreationForm()
     context = {'form':form}
@@ -70,7 +71,7 @@ def index(request):
         Q(room__topic__name__icontains=q)
     )
 
-    
+
     context = {
         'rooms':rooms,
         'topics':topics,
