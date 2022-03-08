@@ -39,7 +39,6 @@ def logoutUser(request):
     logout(request)
     return redirect('index')
 
-
 def registerUser(request):
     form = UserCreationForm()
     context = {'form':form}
