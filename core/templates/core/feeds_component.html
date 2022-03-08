@@ -1,5 +1,4 @@
 {% for room in rooms %}
-
 <div class="roomListRoom">
   <div class="roomListRoom__header">
     <a href="profile.html" class="roomListRoom__author">
@@ -9,7 +8,7 @@
       <span>@{{room.host}}</span>
     </a>
     <div class="roomListRoom__actions">
-      <span>{{room.created|timesince}} ago</span>
+      <span>{{room.created|timesince }} ago</span>
     </div>
   </div>
   <div class="roomListRoom__content">

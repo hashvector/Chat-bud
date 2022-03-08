@@ -9,13 +9,13 @@ class Room(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     updated = models.DateTimeField(auto_now=True)
-    created = models.DateField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        ordering = ['-updated']
+        ordering = ['-updated', '-created']
 
 class Topic(models.Model):
     name = models.CharField(max_length=255)
