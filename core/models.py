@@ -23,6 +23,7 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
 
+
 class Message(models.Model):
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     body = models.TextField()

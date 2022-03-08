@@ -70,6 +70,7 @@ def index(request):
         Q(room__topic__name__icontains=q)
     )
 
+    
     context = {
         'rooms':rooms,
         'topics':topics,
