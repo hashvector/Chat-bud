@@ -118,7 +118,7 @@ def createRoom(request):
             return redirect('index')
 
     context = {'form': form}
-    return render(request, 'core/room_form.html', context)
+    return render(request, 'core/create-room.html', context)
 
 
 @login_required(login_url='login')
