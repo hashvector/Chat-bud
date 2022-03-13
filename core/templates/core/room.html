@@ -1,9 +1,10 @@
 {% extends 'main.html' %}
 {% block content %}
+{% load static %}
     <header class="header header--loggedIn">
       <div class="container">
         <a href="/" class="header__logo">
-          <img src="assets/logo.svg" />
+          <img src="{% static 'images/logo.svg' %}" />
           <h1>StudyBuddy</h1>
         </a>
         <form class="header__search">
@@ -115,7 +116,7 @@
               </div>
               <div class="room__hosted">
                 <p>Hosted By</p>
-                <a href="#" class="room__author">
+                <a href="{% url 'user-profile' room.host.id %}" class="room__author">
                   <div class="avatar avatar--small">
                     <img src="https://randomuser.me/api/portraits/men/37.jpg" />
                   </div>
