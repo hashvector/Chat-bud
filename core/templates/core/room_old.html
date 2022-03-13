@@ -5,32 +5,26 @@
     <h2>Conversation</h2>
     <hr />
     <div>
-      {% for message in room_messages %} 
-      {% if request.user == message.host %}
-      <a href="{% url 'delete-message' message.id%}">Delete</a>
+      {% for message in room_messages %} {% if request.user == message.host %}
+      <a href="{% url 'delete-message' message.id%}"
+        ><svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+        >
+          <title>remove</title>
+          <path
+            d="M27.314 6.019l-1.333-1.333-9.98 9.981-9.981-9.981-1.333 1.333 9.981 9.981-9.981 9.98 1.333 1.333 9.981-9.98 9.98 9.98 1.333-1.333-9.98-9.98 9.98-9.981z"
+          ></path></svg></a>
       {% endif %}
 
       <small>@{{message.host}} {{message.created|timesince}} ago</small>
       <h4>{{message}}</h4>
       <hr />
-      {% endfor %} 
-      
-      {% if request.user.is_authenticated %}
-      <form action="" method="post">
-        {% csrf_token %}
-        <input type="text" placeholder="Enter new message..." name="body" />
-      </form>
-      {% endif %}
-    </div>
-    </div>
-    <div>
-        <p>participants</p>
-        <hr>
-        {% for participant in participants %}
-          <a href="{% url 'user-profile' participant.id %}"><h5>@{{participant}}</h5></a>
-        {% endfor %}
-            
+      {% endfor %}
     </div>
   </div>
-  {% endblock content %}
+  <div></div>
 </div>
