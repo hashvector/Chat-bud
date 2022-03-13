@@ -138,7 +138,7 @@
                         <div class="avatar avatar--small">
                           <img src="https://randomuser.me/api/portraits/men/37.jpg" />
                         </div>
-                        <span>@{{message.host}}</span>
+                        <a href="{% url 'user-profile' message.host.id %}">@{{message.host}}</a>
                       </a>
                       <span class="thread__date">{{message.created|timesince}} ago</span>
                     </div>
