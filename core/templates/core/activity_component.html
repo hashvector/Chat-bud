@@ -13,8 +13,9 @@
         <span>{{message.created|timesince}} ago</span>
       </p>
     </a>
+    {% if request.user == message.host %}
     <div class="roomListRoom__actions">
-      <a href="#">
+      <a href="{% url 'delete-message' message.id %}">
         <svg
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
@@ -29,6 +30,7 @@
         </svg>
       </a>
     </div>
+    {% endif %}
   </div>
   <div class="activities__boxContent">
     <p>replied to post “<a href="{% url 'room' message.room.id %}">{{message.room}}</a>”</p>

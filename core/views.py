@@ -64,7 +64,7 @@ def index(request):
         Q(name__icontains=q) |
         Q(description__icontains=q)
     )
-    room_count = f"{rooms.count()} rooms available" if rooms.count() > 1 else f'{rooms.count()} room available'
+    room_count = rooms.count()
     topics = Topic.objects.all()
     room_messages = Message.objects.filter(
         Q(room__topic__name__icontains=q)
