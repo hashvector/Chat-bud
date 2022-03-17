@@ -54,15 +54,6 @@
           </svg>
         </button>
       </div>
-      {% else %}
-
-      <!-- <a href="/login.html"> -->
-        <img src="{% static 'images/avatar.svg' %}">
-            <p>Login</p>
-          </a>
-
-      {% endif %}
-
       <div class="dropdown-menu">
         <a href="settings.html" class="dropdown-link"
           ><svg
@@ -98,6 +89,16 @@
           Logout</a
         >
       </div>
+      {% else %}
+
+      <a href="/login.html">
+        <img src="{% static 'images/avatar.svg' %}">
+            <p>Login</p>
+          </a>
+
+      {% endif %}
+
+      
     </nav>
   </div>
 </header>
@@ -162,5 +163,5 @@
     <!-- Activities End -->
   </div>
 </main>
-<script src="script.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
 {% endblock content %}
