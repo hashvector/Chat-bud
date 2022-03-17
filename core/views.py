@@ -55,7 +55,7 @@ def registerUser(request):
         else:
             messages.error(request, 'An Error occured during the registration')
 
-    return render(request, 'core/login_register.html', context)
+    return render(request, 'core/signup.html', context)
 
 def index(request):
     q = request.GET.get('q') if request.GET.get('q') != None else  ''

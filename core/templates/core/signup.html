@@ -1,10 +1,18 @@
-{% extends 'main.html' %}
-{% block content %}
-{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <title>StudyBuddy - Find study partners around the world!</title>
+  </head>
+  <body>
     <header class="header header--loggedIn">
       <div class="container">
         <a href="/" class="header__logo">
-          <img src="{% static 'images/logo.svg' %}" />
+          <img src="assets/logo.svg" />
           <h1>StudyBuddy</h1>
         </a>
         <form class="header__search">
@@ -26,8 +34,8 @@
         </form>
         <nav class="header__menu">
           <!-- Not Logged In -->
-          <a href="{% url 'login' %}">
-            <img src="{% static 'images/avatar.svg' %}" />
+          <a href="/login.html">
+            <img src="./assets/avatar.svg" />
             <p>Account</p>
           </a>
 
@@ -56,16 +64,19 @@
         <div class="layout__box">
           <div class="layout__boxHeader">
             <div class="layout__boxTitle">
-              <h3>Login</h3>
+              <h3>Sign up</h3>
             </div>
           </div>
           <div class="layout__body">
             <h2 class="auth__tagline">Find your study partner</h2>
 
-            <form class="form" action="" method="POST">
-              {% csrf_token %}
+            <form class="form" action="#">
               <div class="form__group form__group">
-                <label for="username">Username</label>
+                <label for="fullname">Full Name</label>
+                <input id="fullname" name="fullname" type="text" placeholder="e.g. Dennis Ivy" />
+              </div>
+              <div class="form__group form__group">
+                <label for="room_name">Username</label>
                 <input id="username" name="username" type="text" placeholder="e.g. dennis_ivy" />
               </div>
               <div class="form__group">
@@ -73,6 +84,16 @@
                 <input
                   id="password"
                   name="password"
+                  type="password"
+                  placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+                />
+              </div>
+
+              <div class="form__group">
+                <label for="confirm_password">Confirm Password</label>
+                <input
+                  id="confirm_password"
+                  name="confirm_password"
                   type="password"
                   placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
                 />
@@ -95,16 +116,17 @@
                   ></path>
                 </svg>
 
-                Login
+                Sign Up
               </button>
             </form>
 
             <div class="auth__action">
-              <p>Haven't signed up yet?</p>
-              <a href="{% url 'register' %}" class="btn btn--link">Sign Up</a>
+              <p>Already have an account?</p>
+              <a href="login.html" class="btn btn--link">Log In</a>
             </div>
           </div>
         </div>
       </div>
     </main>
-{% endblock content %}
+  </body>
+</html>
