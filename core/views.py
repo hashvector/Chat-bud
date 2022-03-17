@@ -33,7 +33,7 @@ def loginUser(request):
             messages.error(request, "User name or password does not exist")
 
     context = {'page':page}
-    return render(request, 'core/login_register.html', context)
+    return render(request, 'core/login.html', context)
 
 def logoutUser(request):
     logout(request)
