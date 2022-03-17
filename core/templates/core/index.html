@@ -32,7 +32,8 @@
           </a> -->
 
       <!-- Logged In -->
-
+      
+      {% if request.user.is_authenticated %}
       <div class="header__user">
         <a href="{% url 'user-profile' request.user.id %}">
           <div class="avatar avatar--medium active">
@@ -53,6 +54,14 @@
           </svg>
         </button>
       </div>
+      {% else %}
+
+      <!-- <a href="/login.html"> -->
+        <img src="{% static 'images/avatar.svg' %}">
+            <p>Login</p>
+          </a>
+
+      {% endif %}
 
       <div class="dropdown-menu">
         <a href="settings.html" class="dropdown-link"
