@@ -1,9 +1,10 @@
 {% extends 'main.html' %}
 {% block content %}
+{% load static %}
     <header class="header header--loggedIn">
       <div class="container">
-        <a href="/" class="header__logo">
-          <img src="assets/logo.svg" />
+        <a href="{% url 'index' %}" class="header__logo">
+          <img src="{% static 'images/logo.svg' %}" />
           <h1>StudyBuddy</h1>
         </a>
         <form class="header__search">
@@ -25,8 +26,8 @@
         </form>
         <nav class="header__menu">
           <!-- Not Logged In -->
-          <a href="/login.html">
-            <img src="./assets/avatar.svg" />
+          <a href="{% url 'login' %}">
+            <img src="{% static 'images/avatar.svg' %}" />
             <p>Account</p>
           </a>
 
@@ -61,7 +62,8 @@
           <div class="layout__body">
             <h2 class="auth__tagline">Find your study partner</h2>
 
-            <form class="form" action="#">
+            <form class="form" action="#" method="POST">
+              {% csrf_token %}
               <div class="form__group form__group">
                 <label for="fullname">Full Name</label>
                 <input id="fullname" name="fullname" type="text" placeholder="e.g. Dennis Ivy" />
@@ -113,7 +115,7 @@
 
             <div class="auth__action">
               <p>Already have an account?</p>
-              <a href="login.html" class="btn btn--link">Log In</a>
+              <a href="{% url 'login' %}" class="btn btn--link">Log In</a>
             </div>
           </div>
         </div>
